@@ -59,6 +59,7 @@
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
+
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="bottom"
@@ -66,7 +67,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/content"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:textSize="16sp"
@@ -79,7 +80,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_favorite_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content"
         app:layout_constraintEnd_toStartOf="@id/likesNumber"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -103,7 +104,7 @@
         android:layout_marginStart="16dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_share_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content"
         app:layout_constraintEnd_toStartOf="@id/sharesNumber"
         app:layout_constraintStart_toEndOf="@id/likesNumber" />
 
@@ -126,7 +127,7 @@
         android:ellipsize="end"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="500" />
 
@@ -137,7 +138,7 @@
         android:layout_marginEnd="4dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_viewing_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/viewingsNumber"
+        app:layout_constraintTop_toBottomOf="@id/content"
         app:layout_constraintEnd_toStartOf="@id/viewingsNumber"
         app:layout_constraintTop_toTopOf="@id/viewingsNumber" />
 
