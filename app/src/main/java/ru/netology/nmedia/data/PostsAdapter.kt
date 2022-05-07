@@ -33,13 +33,6 @@ internal class PostsAdapter(
         private val binding: PostBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private lateinit var post: Post
-
-        init {
-            binding.like.setOnClickListener { onLikeClicked(post) }
-            binding.share.setOnClickListener { onShareClicked(post) }
-        }
-
 
         fun bind(post: Post) = with(binding) {
             author.text = post.author
@@ -49,6 +42,8 @@ internal class PostsAdapter(
             like.setImageResource(getLikeIconResId(post.likedByMe))
             sharesNumber.text = numberToString(post.shares)
             viewingsNumber.text = numberToString(post.viewings)
+            like.setOnClickListener { onLikeClicked(post) }
+            share.setOnClickListener { onShareClicked(post) }
         }
 
         @DrawableRes
