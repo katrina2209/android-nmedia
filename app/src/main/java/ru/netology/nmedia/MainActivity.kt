@@ -1,15 +1,14 @@
 package ru.netology.nmedia
 
-import android.app.Activity
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import androidx.activity.viewModels
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.util.focusAndShowKeyboard
 import ru.netology.nmedia.util.hideKeyboard
-import ru.netology.nmedia.util.showKeyboard
 import ru.netology.nmedia.viewModel.PostViewModel
 
 
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 if (content != null) {
                     setSelection(text.length)
                     requestFocus()
-                    showKeyboard()
+                    focusAndShowKeyboard()
                     binding.groupEditMessage.visibility = View.VISIBLE
                 } else {
                     clearFocus()
