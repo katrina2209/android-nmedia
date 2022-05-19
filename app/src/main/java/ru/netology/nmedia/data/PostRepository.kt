@@ -10,4 +10,14 @@ interface PostRepository {
     fun like(postId: Int)
 
     fun share(postId: Int)
+
+    fun delete (postId: Int)
+
+    fun save (post: Post)
+
+    fun cancelEditing ()
+
+    companion object {
+        const val NEW_POST_ID = 0
+    }
 }
