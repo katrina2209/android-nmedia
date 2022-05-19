@@ -32,7 +32,6 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     }
 
     fun onCancelButtonClicked() {
-        repository.cancelEditing()
         currentPost.value = null
     }
 

@@ -15,7 +15,6 @@ interface PostRepository {
 
     fun save (post: Post)
 
-    fun cancelEditing ()
 
     companion object {
         const val NEW_POST_ID = 0
