@@ -76,17 +76,12 @@ internal class PostsAdapter(
                 author.text = post.author
                 date.text = post.published
                 content.text = post.content
-                likesNumber.text = numberToString(post.likes)
-                like.setImageResource(getLikeIconResId(post.likedByMe))
-                sharesNumber.text = numberToString(post.shares)
-                viewingsNumber.text = numberToString(post.viewings)
+                like.text = numberToString(post.likes)
+                like.isChecked = post.likedByMe
+                share.text = numberToString(post.shares)
+                viewing.text = numberToString(post.viewings)
             }
         }
-
-        @DrawableRes
-        private fun getLikeIconResId(liked: Boolean) =
-            if (liked) R.drawable.ic_liked_24dp else R.drawable.ic_favorite_24dp
-
 
         private fun numberToString(number: Int): String {
             val df = DecimalFormat("#.#")
