@@ -3,10 +3,11 @@ package ru.netology.nmedia.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.netology.nmedia.Post
+import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.data.InMemoryPostRepository
 import ru.netology.nmedia.data.PostRepository
+import ru.netology.nmedia.util.SingleLiveEvent
 
 class PostViewModel : ViewModel(), PostInteractionListener {
 
@@ -14,10 +15,14 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     val data get() = repository.data
 
-    val currentPost = MutableLiveData<Post?>(null)
+    val sharePostContent = SingleLiveEvent<String>()
+    val navigateToPostContentScreenEvent = SingleLiveEvent<String?>()
+
+    private val currentPost = MutableLiveData<Post?>(null)
 
 
     fun onSaveButtonClicked(content: String) {
+
         if (content.isBlank()) return
         val post = currentPost.value?.copy(
             content = content
@@ -31,15 +36,19 @@ class PostViewModel : ViewModel(), PostInteractionListener {
         currentPost.value = null
     }
 
-    fun onCancelButtonClicked() {
-        currentPost.value = null
+    fun onAddButtonClicked() {
+        navigateToPostContentScreenEvent.call()
     }
+
 
     // region PostInteractionListener
 
     override fun onLikeClicked(post: Post) = repository.like(post.id)
 
-    override fun onShareClicked(post: Post) = repository.share(post.id)
+    override fun onShareClicked(post: Post) {
+        sharePostContent.value = post.content
+        repository.share(post.id)
+    }
 
     override fun onRemoveClicked(post: Post) {
         currentPost.value = null
@@ -48,7 +57,15 @@ class PostViewModel : ViewModel(), PostInteractionListener {
 
     override fun onEditClicked(post: Post) {
         currentPost.value = post
+        navigateToPostContentScreenEvent.value = post.content
     }
+
 
     // endregion PostInteractionListener
 }
+
+
+
+//    fun onCancelButtonClicked() {
+//        currentPost.value = null
+//    }

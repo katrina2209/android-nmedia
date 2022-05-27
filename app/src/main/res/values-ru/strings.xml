@@ -13,4 +13,6 @@
     <string name="error_empty_content">Контент не может быть пустым</string>
     <string name="edit_icon">Иконка редактирования</string>
     <string name="edit_message">Редактировать сообщение</string>
+    <string name="chooser_share_post">Поделиться постом</string>
+    <string name="add_post">Добавить пост</string>
 </resources>
