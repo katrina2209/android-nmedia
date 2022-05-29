@@ -14,4 +14,8 @@
     <string name="edit_message">Edit Message</string>
     <string name="chooser_share_post">Share post</string>
     <string name="add_post">Add post</string>
+    <string name="text_post">Post text:</string>
+    <string name="add_video_url">Add video url:</string>
+    <string name="video">Video</string>
+    <string name="chooser_watch_video">Watch video</string>
 </resources>

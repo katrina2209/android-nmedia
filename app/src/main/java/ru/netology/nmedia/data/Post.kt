@@ -9,5 +9,13 @@ data class Post(
     val likes: Int = 0,
     val shares: Int = 0,
     val viewings: Int = 0,
-    val likedByMe: Boolean = false
+    val likedByMe: Boolean = false,
+    val videoUrl: String? = null
 )
+
+// Класс для передачи из контракта результата работы активити
+class EditPostResult(
+    val newContent: String?,
+    val newVideoUrl: String?
+)
+
