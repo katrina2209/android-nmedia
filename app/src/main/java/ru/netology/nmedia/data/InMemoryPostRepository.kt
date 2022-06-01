@@ -1,7 +1,6 @@
 package ru.netology.nmedia.data
 
 import androidx.lifecycle.MutableLiveData
-import ru.netology.nmedia.Post
 
 class InMemoryPostRepository : PostRepository {
 
@@ -12,7 +11,16 @@ class InMemoryPostRepository : PostRepository {
         }
 
     override val data = MutableLiveData(
-        List(GENERATED_POSTS_AMOUNT) { index ->
+        listOf(
+            Post(
+                id = 999999,
+                author = "Ekaterina",
+                content = "Content with video",
+                published = "29.05.2022",
+                videoUrl = "https://www.youtube.com/watch?v=gQPM9IuNv8k"
+            )
+        )
+                + List(GENERATED_POSTS_AMOUNT) { index ->
             Post(
                 id = index + 1,
                 author = "Ekaterina",

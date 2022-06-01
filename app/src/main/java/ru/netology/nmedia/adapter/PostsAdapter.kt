@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ru.netology.nmedia.MainActivity
-import ru.netology.nmedia.Post
+import ru.netology.nmedia.data.Post
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.PostBinding
 import java.math.RoundingMode
@@ -52,7 +50,6 @@ internal class PostsAdapter(
                         }
                         else -> false
                     }
-
                 }
             }
         }
@@ -67,6 +64,12 @@ internal class PostsAdapter(
             binding.options.setOnClickListener {
                 popupMenu.show()
             }
+            binding.buttonPlay.setOnClickListener {
+                listener.onVideoClicked(post)
+            }
+            binding.video.setOnClickListener {
+                listener.onVideoClicked(post)
+            }
         }
 
         fun bind(post: Post) {
@@ -80,6 +83,8 @@ internal class PostsAdapter(
                 like.isChecked = post.likedByMe
                 share.text = numberToString(post.shares)
                 viewing.text = numberToString(post.viewings)
+                videoGroup.visibility =
+                    if (post.videoUrl.isNullOrBlank()) View.GONE else View.VISIBLE
             }
         }
 
