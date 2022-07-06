@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.netology.nmedia">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,8 @@
         android:theme="@style/Theme.NMedia">
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.AppActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +24,8 @@
         </activity>
 
         <activity
-            android:name=".activity.IntentHandlerActivity"
+            android:name=".ui.IntentHandlerActivity"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -33,18 +36,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".activity.PostContentActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-        <intent-filter>
-            <action android:name="android.intent.action.SEND" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-
-            <data android:mimeType="text/plain" />
-        </intent-filter>
-        </activity>
 
     </application>
 

@@ -8,15 +8,16 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.properties.Delegates
 
-class FilePostRepository(
-    private val application: Application
-) : PostRepository {
+
+class FilePostRepository constructor (private val application : Application): PostRepository {
 
     private val gson = Gson()
     private val type = TypeToken.getParameterized(List::class.java, Post::class.java).type
     private val prefs = application.getSharedPreferences(
         "repo", Context.MODE_PRIVATE
     )
+
+
 
     private var nextId: Int by Delegates.observable(
         prefs.getInt(NEXT_ID_PREFS_KEY, 0)
@@ -25,14 +26,14 @@ class FilePostRepository(
     }
 
     private var posts
-        get() = checkNotNull(data.value) {
-            "Data value should not be null"
-        }
-        set(value) {
-            application.openFileOutput(FILE_NAME, Context.MODE_PRIVATE)
-                .bufferedWriter().use { it.write(gson.toJson(value)) }
-            data.value = value
-        }
+    get() = checkNotNull(data.value) {
+        "Data value should not be null"
+    }
+    set(value) {
+        application.openFileOutput(FILE_NAME, Context.MODE_PRIVATE)
+            .bufferedWriter().use { it.write(gson.toJson(value)) }
+        data.value = value
+    }
 
 
     override val data: MutableLiveData<List<Post>>
@@ -84,9 +85,32 @@ class FilePostRepository(
         }
     }
 
+    companion object : SingletonHolder<FilePostRepository, Application>(::FilePostRepository){
+    private const val NEXT_ID_PREFS_KEY = "nextId"
+    private const val FILE_NAME = "posts.json"
+}
+}
 
-    companion object {
-        const val NEXT_ID_PREFS_KEY = "nextId"
-        const val FILE_NAME = "posts.json"
+
+
+open class SingletonHolder<out T: Any, in A>(creator: (A) -> T) {
+    private var creator: ((A) -> T)? = creator
+    @Volatile private var instance: T? = null
+    fun getInstance(arg: A): T {
+        val checkInstance = instance
+        if (checkInstance != null) {
+            return checkInstance
+        }
+        return synchronized(this) {
+            val checkInstanceAgain = instance
+            if (checkInstanceAgain != null) {
+                checkInstanceAgain
+            } else {
+                val created = creator!!(arg)
+                instance = created
+                creator = null
+                created
+            }
+        }
     }
 }

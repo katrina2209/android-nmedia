@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
+    tools:context=".ui.FeedFragment"
     tools:ignore="ExtraText">
 
 
@@ -26,7 +26,10 @@
         android:contentDescription="@string/add_post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_24dp" />
+        app:srcCompat="@drawable/ic_add_24dp"
+        tools:ignore="ImageContrastCheck" />
+
+
 
     <!--    <androidx.constraintlayout.widget.Barrier-->
     <!--        android:id="@+id/toolsTopBarrier"-->
