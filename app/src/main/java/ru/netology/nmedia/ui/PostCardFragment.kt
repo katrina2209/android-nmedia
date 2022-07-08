@@ -36,7 +36,7 @@ class PostCardFragment : Fragment() {
 
 
         viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val post = posts.first { it.id == postId }
+            val post = posts.find { it.id == postId } ?: return@observe
             viewHolder.bind(post)
 
 
@@ -59,7 +59,6 @@ class PostCardFragment : Fragment() {
                     }
                 }.show()
             }
-
         }
 
         viewModel.navigateToVideoWatching.observe(viewLifecycleOwner) { videoUrl ->
@@ -93,8 +92,6 @@ class PostCardFragment : Fragment() {
                 )
             findNavController().navigate(direction)
         }
-
-
         return binding.root
 
     }
