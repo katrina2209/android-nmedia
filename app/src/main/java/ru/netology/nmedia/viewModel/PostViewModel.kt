@@ -8,9 +8,9 @@ import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.data.*
 import ru.netology.nmedia.util.SingleLiveEvent
 
-class PostViewModel (
+class PostViewModel(
     application: Application
-        ) : AndroidViewModel(application), PostInteractionListener {
+) : AndroidViewModel(application), PostInteractionListener {
 
     private val repository: PostRepository = FilePostRepository(application)
 
@@ -18,6 +18,7 @@ class PostViewModel (
 
     val sharePostContent = SingleLiveEvent<String>()
     val navigateToPostContentScreenEvent = SingleLiveEvent<EditPostResult?>()
+    val navigateToPostCardFragmentEvent = SingleLiveEvent<Int>()
     val navigateToVideoWatching = SingleLiveEvent<String?>()
 
     private val currentPost = MutableLiveData<Post?>(null)
@@ -66,6 +67,12 @@ class PostViewModel (
 
     override fun onVideoClicked(post: Post) {
         navigateToVideoWatching.value = post.videoUrl
+    }
+
+    override fun onPostClicked(post: Post) {
+        currentPost.value = post
+        navigateToPostCardFragmentEvent.value = post.id
+
     }
 
 
