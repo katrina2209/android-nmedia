@@ -14,7 +14,7 @@ class PostViewModel(
 ) : AndroidViewModel(application), PostInteractionListener {
 
     private val repository: PostRepository =
-        SQLiteRepository(
+        PostRepositoryImpl(
             dao = AppDb.getInstance(
                 context = application
             ).postDao
