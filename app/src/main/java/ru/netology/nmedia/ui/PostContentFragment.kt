@@ -25,7 +25,6 @@ class PostContentFragment : Fragment() {
         binding.edit.setText(args.initialContent)
         binding.edit.focusAndShowKeyboard()
 
-        // TODO: клавиатура не появляется при создании нового поста
         binding.videoUrl.setText(args.initialVideoUrl)
 
         binding.ok.setOnClickListener {
