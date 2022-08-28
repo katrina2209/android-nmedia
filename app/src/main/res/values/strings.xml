@@ -18,4 +18,9 @@
     <string name="add_video_url">Add video url:</string>
     <string name="video">Video</string>
     <string name="chooser_watch_video">Watch video</string>
+    <string name="notification_user_liked">User %1$s liked %2$s\'s post</string>
+    <string name="channel_remote_name">Server notifications</string>
+    <string name="channel_remote_description">Notifications from remote server</string>
+    <string name="notification_new_post">%1$s published new post:</string>
+    <string name="notification_new_post_text">%1$s</string>
 </resources>
